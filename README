@@ -1,0 +1,6 @@
+= Tory Plugin
+
+This plugin contains customization for Remdine
+
+* Redmine mail function adds List-Id header to email. Remove it
+* I don't like generic menu and jump box. Move Search box to menu and add drop down menu for Projects, Issues and Login (requre the theme supports drop down menu)
