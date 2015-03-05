@@ -49,20 +49,18 @@
         end %>
     </li>
     <%= content_tag('li', "#{link_to l(:label_administration), { :controller => 'admin', :action => 'index' }}".html_safe) if User.current.admin? %>
-    <div id='loggedas'>
-      <% if User.current.logged? || !Setting.login_required? %>
-      <div id="quick-search">
-        <%= form_tag({:controller => 'search', :action => 'index', :id => @project}, :method => :get ) do %>
-          <%= hidden_field_tag(controller.default_search_scope, 1, :id => nil) if controller.default_search_scope %>
-          <%= text_field_tag 'q', @question, :size => 20, :class => 'small', :accesskey => accesskey(:quick_search), :placeholder => l(:label_search) %>
-        <% end %>
-      </div>
+    <% if User.current.logged? || !Setting.login_required? %>
+    <div id="quick-search">
+      <%= form_tag({:controller => 'search', :action => 'index', :id => @project}, :method => :get ) do %>
+        <%= hidden_field_tag(controller.default_search_scope, 1, :id => nil) if controller.default_search_scope %>
+        <%= text_field_tag 'q', @question, :size => 20, :class => 'small', :accesskey => accesskey(:quick_search), :placeholder => l(:label_search) %>
       <% end %>
-      <li>
-        <%= link_to_user(User.current, :format => :username) if User.current.logged? %>
-        <%= render_menu :account_menu -%>
-      </li>
     </div>
+    <% end %>
+    <li id='loggedas'>
+      <%= link_to_user(User.current, :format => :username) if User.current.logged? %>
+      <%= render_menu :account_menu -%>
+    </li>
   </ul>
 </div>
 <div id="header">
